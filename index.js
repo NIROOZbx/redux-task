@@ -6,25 +6,39 @@ let p=document.getElementById("ele")
 
 let div=document.getElementById("div")
 let btn3=document.getElementById("btn-change")
+let p1=document.getElementById("fetch")
+
 
 
 function increment() {
-    store.dispatch({type:'INCREMENT'})
-    store.getState(); 
+    return {type:'INCREMENT'}
 }
 
 function decrement() {
-    store.dispatch({type:'DECREMENT'})
+    return {type:'DECREMENT'}
 }
 
 function changeColor(){
-    store.dispatch({type:"CHANGE"})
+    return {type:"CHANGE"}
 }
 
+function fetchUser() {
+    return function (dispatch,state) {
+        dispatch({type:'FETCH'})    
+        console.log("current",state());
+        
+        setTimeout(()=>{
+            dispatch({type:"FETCH_DONE"})
+        },4000)
+    }
+}
+
+store.dispatch(fetchUser())
 
 store.subscribe(()=>{  
     p.textContent = store.getState().count; 
     div.style.backgroundColor=store.getState().color
-
-    console.log(store.getState());
+    p1.textContent = "Status: " + store.getState().data;
+   console.log("State now:", store.getState().data);
+   
 })

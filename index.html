@@ -9,11 +9,14 @@
     
 </head>
 <body>
-    <button id="btn1" onclick="increment()">Increment</button>
+    <button id="btn1" onclick="store.dispatch(increment())">Increment</button>
     <p id="ele">0</p>
-    <button id="btn2" onclick="decrement()">Decrement</button>
+    <button id="btn2" onclick="store.dispatch(decrement())">Decrement</button>
     <div id="div" style="width:100px;background-color:blue;height: 100px;"></div>
-    <button id="btn-change" onclick="changeColor()">Change</button>
+    <button id="btn-change" onclick="store.dispatch(changeColor())">Change</button>
+    <br>
+    <p id="fetch"></p>
+
 
       <script src="store.js"></script>
       <script src="index.js"></script>
